@@ -23,7 +23,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RemoteDataSourceImpl implements DataSource {
-    final static private String baseUrl = "https://d710d1e4.ngrok.io/";
+    final static private String baseUrl = "http://d710d1e4.ngrok.io/";
     final static private String _TAG = "Remote";
 
     Repository repository;
