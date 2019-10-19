@@ -28,3 +28,4 @@ node -v
 
 ```
 
+Rest Client 플러그인 설치
