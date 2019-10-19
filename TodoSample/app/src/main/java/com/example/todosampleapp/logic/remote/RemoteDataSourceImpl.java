@@ -37,4 +37,9 @@ public class RemoteDataSourceImpl implements DataSource {
         //TODO 서버 연동
         return null;
     }
+
+    @Override
+    public Single<User> loginProc(User user) {
+        return null;
+    }
 }

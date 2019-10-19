@@ -32,4 +32,6 @@ public interface DataSource {
      * @return
      */
     Single<Item> fetchItem(int no);
+
+    Single<User> loginProc(User user);
 }

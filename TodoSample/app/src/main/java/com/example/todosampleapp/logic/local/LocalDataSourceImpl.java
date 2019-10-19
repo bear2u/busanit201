@@ -56,4 +56,9 @@ public class LocalDataSourceImpl implements DataSource {
     public Maybe<Long> registerUser(User user) {
         return null;
     }
+
+    @Override
+    public Single<User> loginProc(User user) {
+        return null;
+    }
 }

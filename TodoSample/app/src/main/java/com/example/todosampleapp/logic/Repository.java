@@ -2,6 +2,7 @@ package com.example.todosampleapp.logic;
 
 import com.example.todosampleapp.base.BasePresenter;
 import com.example.todosampleapp.model.Item;
+import com.example.todosampleapp.model.User;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface Repository<T> {
     void fetchItemsDone(List<Item> items);
 
     Single<Item> fetchItem(int no);
+
+    Single<User> loginProc(User user);
 }

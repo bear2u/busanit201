@@ -4,6 +4,7 @@ import com.example.todosampleapp.base.BasePresenter;
 import com.example.todosampleapp.logic.local.LocalDataSourceImpl;
 import com.example.todosampleapp.logic.remote.RemoteDataSourceImpl;
 import com.example.todosampleapp.model.Item;
+import com.example.todosampleapp.model.User;
 import com.example.todosampleapp.write.WriteContract;
 
 import java.util.List;
@@ -51,5 +52,12 @@ public class RepositoryImpl<T> implements Repository {
                     item.setTitle(item.getTitle() + "_");
                     return item;
                 });
+    }
+
+    @Override
+    public Single<User> loginProc(User user) {
+        // TODO test
+        remoteDataSource.loginProc(user);
+        return Single.just(new User());
     }
 }

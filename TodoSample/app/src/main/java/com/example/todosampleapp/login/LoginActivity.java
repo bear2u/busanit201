@@ -22,7 +22,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
     Button btnRegister;
 
     @BindView(R.id.email)
-    EditText etId;
+    EditText etEmail;
 
     @BindView(R.id.password)
     EditText etPassword;
@@ -39,7 +39,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
 
         btnLogin.setOnClickListener((view) -> {
             User user = new User();
-            user.setEmail(etId.getText().toString());
+            user.setEmail(etEmail.getText().toString());
             user.setPwd(etPassword.getText().toString());
             mPresenter.loginProc(user);
         });
