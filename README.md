@@ -1,22 +1,30 @@
 # busanit201
 
+이름 : 김태현
+
+완성도
+- [x] Login
+- [ ] Register
+- [ ] List
+- [ ] Write
+- [ ] Detail
+
 ```
-mkdir workspace
-git clone <repo_url>
-open android studio
 git add .
-git commit -m '메세지'
-git push origin
+git commit -m 'add ReadMe.md'
+git push origin master
 
-// Update
-git fetch origin
-git pull origin
+git status
+
+//update
+git pull origin master
+or
+git fetch origin master
 ```
 
-## MVP 패턴 적용
+```
+node -v
 
-## RxJava 적용
 
-## Room 적용
+```
 
-## Retrofit 적용
