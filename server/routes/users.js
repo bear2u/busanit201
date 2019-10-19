@@ -6,7 +6,7 @@ router.post('/auth', function(req, res, next) {
   const id = req.body.id;
   const pwd = req.body.password;  
   res
-    .json({result : (id == "test" && pwd == "1234")});
+    .json({result : (id == "test@test.com" && pwd == "1234")});
 });
 
 module.exports = router;

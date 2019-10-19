@@ -52,7 +52,6 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="48dp"
         android:layout_marginBottom="64dp"
-        android:enabled="false"
         android:text="Login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,15 +63,14 @@
         />
 
     <Button
-
         android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"
         app:layout_constraintBottom_toBottomOf="@+id/btnLogin"
-        app:layout_constraintEnd_toEndOf="@+id/password"
-        app:layout_constraintStart_toEndOf="@+id/btnLogin"
-        app:layout_constraintTop_toTopOf="@+id/btnLogin"
+        app:layout_constraintEnd_toEndOf="@id/password"
+        app:layout_constraintStart_toEndOf="@id/btnLogin"
+        app:layout_constraintTop_toTopOf="@id/btnLogin"
         android:background="@color/colorAccent"
         android:textColor="@android:color/white"
         app:layout_constraintVertical_bias="0.2"
@@ -89,8 +87,8 @@
         android:layout_marginBottom="64dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/password"
-        app:layout_constraintStart_toStartOf="@+id/password"
+        app:layout_constraintEnd_toEndOf="@id/password"
+        app:layout_constraintStart_toStartOf="@id/password"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3" />
 

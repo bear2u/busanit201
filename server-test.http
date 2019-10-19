@@ -1,8 +1,8 @@
 
-POST http://d710d1e4.ngrok.io/users/auth
+POST https://d710d1e4.ngrok.io/users/auth
 content-type: application/json
 
 {
-    "id": "test2",
+    "id": "test@test.com",
     "password": "1234"
 }
