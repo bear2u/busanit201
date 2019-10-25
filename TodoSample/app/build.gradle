@@ -26,6 +26,7 @@ android {
 }
 
 def room_version = "2.2.0"
+def retrofit_rxjava = '2.6.2'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -58,7 +59,8 @@ dependencies {
     implementation 'com.jakewharton.rxbinding3:rxbinding:3.0.0'
 
     //Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
-    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_rxjava"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_rxjava"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.2.1"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_rxjava"
 }

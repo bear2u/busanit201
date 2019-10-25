@@ -6,10 +6,11 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "User")
 public class User {
     @PrimaryKey(autoGenerate = true)
-    int no;
-    String email;
-    String pwd;
-    String name;
+    public int no;
+
+    public String email;
+    public String pwd;
+    public String name;
 
     public int getNo() {
         return no;
@@ -41,5 +42,15 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "no=" + no +
+                ", email='" + email + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

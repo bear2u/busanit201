@@ -2,6 +2,7 @@ package com.example.todosampleapp.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 import com.example.todosampleapp.R;
 import com.example.todosampleapp.base.BaseActivity;
 import com.example.todosampleapp.model.User;
+import com.example.todosampleapp.profile.ProfileActivity;
 import com.example.todosampleapp.register.RegisterActivity;
 
 import butterknife.BindView;
@@ -20,6 +22,9 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
 
     @BindView(R.id.btnRegister)
     Button btnRegister;
+
+    @BindView(R.id.btnProfile)
+    Button btnProfile;
 
     @BindView(R.id.email)
     EditText etEmail;
@@ -47,6 +52,8 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
         btnRegister.setOnClickListener((view) ->
             startActivity(new Intent(LoginActivity.this, RegisterActivity.class))
         );
+
+        btnProfile.setOnClickListener(view -> startActivity(new Intent(LoginActivity.this, ProfileActivity.class)));
     }
 
     @Override

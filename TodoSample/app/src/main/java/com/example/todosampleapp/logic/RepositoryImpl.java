@@ -57,7 +57,6 @@ public class RepositoryImpl<T> implements Repository {
     @Override
     public Single<User> loginProc(User user) {
         // TODO test
-        remoteDataSource.loginProc(user);
-        return Single.just(new User());
+        return remoteDataSource.loginProc(user);
     }
 }
