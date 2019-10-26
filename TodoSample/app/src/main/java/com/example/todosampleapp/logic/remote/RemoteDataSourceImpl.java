@@ -1,28 +1,17 @@
 package com.example.todosampleapp.logic.remote;
 
-import android.util.Log;
-
 import com.example.todosampleapp.logic.DataSource;
 import com.example.todosampleapp.logic.Repository;
 import com.example.todosampleapp.logic.remote.services.UserApiService;
 import com.example.todosampleapp.model.Item;
-import com.example.todosampleapp.model.SimpleResponse;
 import com.example.todosampleapp.model.User;
-
-import org.json.JSONObject;
 
 import java.util.List;
 
 import io.reactivex.Maybe;
-import io.reactivex.Scheduler;
 import io.reactivex.Single;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -78,19 +67,9 @@ public class RemoteDataSourceImpl implements DataSource {
     }
 
     @Override
-    public Single<User> loginProc(User user) {
+    public Maybe<User> loginProc(User user) {
         //TODO implemention Retrofit
         UserApiService userApiService = retrofit.create(UserApiService.class);
-        userApiService.login(user)
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Consumer<SimpleResponse>() {
-                    @Override
-                    public void accept(SimpleResponse simpleResponse) throws Exception {
-                        Log.d("Remote", simpleResponse.toString());
-                    }
-                });
-
-
-        return null;
+        return userApiService.login(user);
     }
 }

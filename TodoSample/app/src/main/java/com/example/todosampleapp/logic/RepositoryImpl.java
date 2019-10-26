@@ -9,6 +9,7 @@ import com.example.todosampleapp.write.WriteContract;
 
 import java.util.List;
 
+import io.reactivex.Maybe;
 import io.reactivex.Single;
 
 public class RepositoryImpl<T> implements Repository {
@@ -55,9 +56,8 @@ public class RepositoryImpl<T> implements Repository {
     }
 
     @Override
-    public Single<User> loginProc(User user) {
+    public Maybe<User> loginProc(User user) {
         // TODO test
-        remoteDataSource.loginProc(user);
-        return Single.just(new User());
+        return remoteDataSource.loginProc(user);
     }
 }
