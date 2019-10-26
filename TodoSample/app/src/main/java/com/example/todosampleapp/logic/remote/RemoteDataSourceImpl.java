@@ -6,6 +6,7 @@ import com.example.todosampleapp.logic.DataSource;
 import com.example.todosampleapp.logic.Repository;
 import com.example.todosampleapp.logic.remote.services.UserApiService;
 import com.example.todosampleapp.model.Item;
+import com.example.todosampleapp.model.SimpleResponse;
 import com.example.todosampleapp.model.User;
 
 import org.json.JSONObject;
@@ -23,7 +24,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RemoteDataSourceImpl implements DataSource {
-    final static private String baseUrl = "http://d710d1e4.ngrok.io/";
+    final static private String baseUrl = "https://743802dc.ngrok.io/";
     final static private String _TAG = "Remote";
 
     Repository repository;
@@ -78,17 +79,17 @@ public class RemoteDataSourceImpl implements DataSource {
             @Override
             public void run() {
                 UserApiService userApiService = retrofit.create(UserApiService.class);
-                Call<JSONObject> call = userApiService.login(user);
-                call.enqueue(new Callback<JSONObject>() {
+                Call<SimpleResponse> call = userApiService.login(user);
+                call.enqueue(new Callback<SimpleResponse>() {
                     @Override
-                    public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+                    public void onResponse(Call<SimpleResponse> call, Response<SimpleResponse> response) {
                         // TODO 성공
                         // status code == 200
                         Log.d(_TAG, response.body() + "");
                     }
 
                     @Override
-                    public void onFailure(Call<JSONObject> call, Throwable t) {
+                    public void onFailure(Call<SimpleResponse> call, Throwable t) {
                         // TODO 실패
                         t.printStackTrace();
                     }

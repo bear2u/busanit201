@@ -1,5 +1,5 @@
 
-POST https://d710d1e4.ngrok.io/users/auth
+POST https://743802dc.ngrok.io/users/auth
 content-type: application/json
 
 {
