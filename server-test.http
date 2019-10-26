@@ -3,6 +3,6 @@ POST https://743802dc.ngrok.io/users/auth
 content-type: application/json
 
 {
-    "id": "test@test.com",
+    "email": "test@test.com",
     "password": "1234"
 }

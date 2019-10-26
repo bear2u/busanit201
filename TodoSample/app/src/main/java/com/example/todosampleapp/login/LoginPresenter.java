@@ -32,6 +32,7 @@ public class LoginPresenter
                     @Override
                     public void accept(User result) throws Exception {
                         Log.d(_TAG, "onSuccess user = " + result.toString());
+
                     }
                 }, new Consumer<Throwable>() {
                     @Override
