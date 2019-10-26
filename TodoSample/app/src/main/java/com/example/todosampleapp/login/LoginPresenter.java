@@ -7,8 +7,8 @@ import com.example.todosampleapp.logic.Repository;
 import com.example.todosampleapp.logic.RepositoryImpl;
 import com.example.todosampleapp.model.User;
 
-import io.reactivex.Scheduler;
-import io.reactivex.functions.Action;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
@@ -26,24 +26,20 @@ public class LoginPresenter
 
     @Override
     public void loginProc(User user) {
-        this.repository.loginProc(user)
+        Disposable disposable = this.repository.loginProc(user)
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Consumer<User>() {
-                    @Override
-                    public void accept(User result) throws Exception {
-                        Log.d(_TAG, "onSuccess user = " + result.toString());
-
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-
-                    }
-                }, new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        Log.d(_TAG, "onComplete user");
-                    }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe((Consumer<User>) result -> {
+                    Log.d(_TAG, "onSuccess user = " + result.toString());
+                    view.loginSuccess();
+                },
+                throwable -> {
+                },
+                () -> {
+                    Log.d(_TAG, "onComplete user");
+                    view.loginFail();
                 });
+
+        bag.add(disposable);
     }
 }

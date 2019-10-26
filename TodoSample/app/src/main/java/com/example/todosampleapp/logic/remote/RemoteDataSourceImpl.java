@@ -17,28 +17,9 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RemoteDataSourceImpl implements DataSource {
-    final static private String baseUrl = "https://743802dc.ngrok.io/";
     final static private String _TAG = "Remote";
 
     Repository repository;
-    Retrofit retrofit;
-
-    public RemoteDataSourceImpl() {
-        initRetrofit();
-    }
-
-    public void initRetrofit() {
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
-
-        retrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build();
-    }
 
     @Override
     public void setRepository(Repository repository) {
@@ -69,7 +50,8 @@ public class RemoteDataSourceImpl implements DataSource {
     @Override
     public Maybe<User> loginProc(User user) {
         //TODO implemention Retrofit
-        UserApiService userApiService = retrofit.create(UserApiService.class);
+        UserApiService userApiService = NetRetrofit.getInstance().getRetrofit()
+                .create(UserApiService.class);
         return userApiService.login(user);
     }
 }
