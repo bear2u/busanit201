@@ -14,13 +14,17 @@ import org.json.JSONObject;
 import java.util.List;
 
 import io.reactivex.Maybe;
+import io.reactivex.Scheduler;
 import io.reactivex.Single;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RemoteDataSourceImpl implements DataSource {
@@ -43,6 +47,7 @@ public class RemoteDataSourceImpl implements DataSource {
                 .baseUrl(baseUrl)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
 
@@ -75,28 +80,16 @@ public class RemoteDataSourceImpl implements DataSource {
     @Override
     public Single<User> loginProc(User user) {
         //TODO implemention Retrofit
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                UserApiService userApiService = retrofit.create(UserApiService.class);
-                Call<SimpleResponse> call = userApiService.login(user);
-                call.enqueue(new Callback<SimpleResponse>() {
+        UserApiService userApiService = retrofit.create(UserApiService.class);
+        userApiService.login(user)
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Consumer<SimpleResponse>() {
                     @Override
-                    public void onResponse(Call<SimpleResponse> call, Response<SimpleResponse> response) {
-                        // TODO 성공
-                        // status code == 200
-                        Log.d(_TAG, response.body() + "");
-                    }
-
-                    @Override
-                    public void onFailure(Call<SimpleResponse> call, Throwable t) {
-                        // TODO 실패
-                        t.printStackTrace();
+                    public void accept(SimpleResponse simpleResponse) throws Exception {
+                        Log.d("Remote", simpleResponse.toString());
                     }
                 });
-            }
-        });
-        thread.start();
+
 
         return null;
     }
